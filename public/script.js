@@ -1,4 +1,4 @@
-const socket = io("https://ltm-project.herokuapp.com/");
+const socket = io("/");
 const chatInputBox = document.getElementById("chat_message");
 const all_messages = document.getElementById("all_messages");
 const main__chat__window = document.getElementById("main__chat__window");
@@ -8,7 +8,7 @@ myVideo.muted = true;
 
 const peer = new Peer(undefined, {
     path: "peerjs",
-    host: "ltm-project.herokuapp.com",
+    host: "/",
     port: 3030,
 });
 
