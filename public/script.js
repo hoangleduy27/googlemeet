@@ -1,4 +1,4 @@
-const socket = io("/");
+const socket = io('https://googlemeetupdate.herokuapp.com/');
 
 const chatInputBox = document.getElementById("chat_message");
 const all_messages = document.getElementById("all_messages");
@@ -9,8 +9,8 @@ myVideo.muted = true;
 
 const peer = new Peer(undefined, {
     path: "peerjs",
-    host: "/",
-    port: 3030,
+    host: 'googlemeetupdate.herokuapp.com',
+    port: 443,
 });
 
 let myVideoStream;
