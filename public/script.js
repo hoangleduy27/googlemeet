@@ -115,9 +115,7 @@ const addVideoStream = (videoEl, stream) => {
 
 const shareScreen = () => {
     const shareScreen = displayMediaOptions = {
-        video: {
-            cursor: "always"
-        },
+        video: true,
         audio: false
     };
 
