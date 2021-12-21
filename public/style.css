@@ -141,3 +141,9 @@ video {
 .unmute {
     color: red;
 }
+
+#link_chat {
+    color: rgb(230, 224, 224);
+    font-weight: Bold;
+    text-decoration: none;
+}
