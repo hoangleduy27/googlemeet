@@ -12,31 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js.map"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="peer.js"></script>
-    <script type="text/javascript" src="https://flashphoner.com/downloads/builds/flashphoner_client/wcs_api-2.0/current/flashphoner.js"></script>
-    <script type="text/javascript" src="screen-sharing-min.js"></script>
+
     <script>
         const ROOM_ID = "<%= roomId %>";
     </script>
 </head>
-<style>
-    .fp-Video {
-        border: 1px double black;
-        width: 322px;
-        height: 242px;
-    }
-    
-    .display {
-        width: 100%;
-        height: 100%;
-        display: inline-block;
-    }
-    
-    .display>video,
-    object {
-        width: 100%;
-        height: 100%;
-    }
-</style>
+
 
 <body>
 
@@ -103,14 +84,6 @@
                         <i class="fa fa-comment"></i>
                         <span>Chat</span>
                     </div>
-                </div>
-
-                <div onload="init_api()">
-                    <div class="fp-Video">
-                        <div id="screen-sharing" class="display"></div>
-                    </div>
-                    <br />
-                    <button id="shareBtn">Share Screen</button>
                 </div>
 
 
