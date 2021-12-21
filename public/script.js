@@ -56,6 +56,7 @@ navigator.mediaDevices
             all_messages.append(li);
             main__chat__window.scrollTop = main__chat__window.scrollHeight;
         });
+
     });
 
 peer.on("call", function(call) {
@@ -111,6 +112,21 @@ const addVideoStream = (videoEl, stream) => {
         }
     }
 };
+
+const shareScreen = () => {
+    const shareScreen = displayMediaOptions = {
+        video: {
+            cursor: "always"
+        },
+        audio: false
+    };
+
+    navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+        .then(function(stream) {
+            // add this stream to your peer 
+        });
+};
+
 
 const playStop = () => {
     let enabled = myVideoStream.getVideoTracks()[0].enabled;
