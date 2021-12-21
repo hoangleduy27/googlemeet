@@ -115,11 +115,11 @@ const addVideoStream = (videoEl, stream) => {
 
 const shareScreen = () => {
     const shareScreen = displayMediaOptions = {
-        video: true,
+        video: { cursor: 'always' },
         audio: false
     };
 
-    navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+    navigator.mediaDevices.getVideoTracks(displayMediaOptions)
         .then(function(stream) {
             // add this stream to your peer 
         });
