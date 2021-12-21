@@ -12,25 +12,70 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js.map"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="peer.js"></script>
+    <script type="text/javascript" src="https://flashphoner.com/downloads/builds/flashphoner_client/wcs_api-2.0/current/flashphoner.js"></script>
+    <script type="text/javascript" src="screen-sharing-min.js"></script>
     <script>
         const ROOM_ID = "<%= roomId %>";
     </script>
 </head>
+<style>
+    .fp-Video {
+        border: 1px double black;
+        width: 322px;
+        height: 242px;
+    }
+    
+    .display {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+    
+    .display>video,
+    object {
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
 <body>
 
 
     <div class="main">
         <div id="div-chat">
-            <p>Online user:</p>
-            <ul id="ulUser">
-            </ul>
-            <br>
-            <h3 id="my-peer">Your Id: </h3>
-            <br>
-            <input type="text" id="remoteId" placeholder="ID Room">
-            <button class="btn btn-secondary" id="btnCall"><a id="link_chat" href="https://chatgoogle.herokuapp.com">Chat Room</a>    </button>
+
+
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a>
+                    <input type="text" id="remoteId" placeholder="ID Room">
+                </a>
+                &nbsp
+                <button class="btn btn-secondary" id="btnCall"><a id="link_chat" href="https://chatgoogle.herokuapp.com" target="_blank" >Chat Room</a></button>
+
+            </div>
+
+            <div id="main">
+
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+            </div>
+
+            <script>
+                function openNav() {
+                    document.getElementById("mySidenav").style.width = "250px";
+                    document.getElementById("main").style.marginLeft = "250px";
+                    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+                }
+
+                function closeNav() {
+                    document.getElementById("mySidenav").style.width = "0";
+                    document.getElementById("main").style.marginLeft = "0";
+                    document.body.style.backgroundColor = "white";
+                }
+            </script>
+
         </div>
+
 
         <div class="main__left">
             <div class="main__videos">
@@ -49,10 +94,7 @@
                 </div>
 
                 <div class="main__controls_block">
-                    <div class="main__controls_button">
-                        <i class="fa fa-shield"></i>
-                        <span>Security</span>
-                    </div>
+
                     <div class="main__controls_button">
                         <i class="fa fa-users"></i>
                         <span>Participants</span>
@@ -63,10 +105,18 @@
                     </div>
                 </div>
 
+                <div onload="init_api()">
+                    <div class="fp-Video">
+                        <div id="screen-sharing" class="display"></div>
+                    </div>
+                    <br />
+                    <button id="shareBtn">Share Screen</button>
+                </div>
+
+
                 <div class="main__controls_block">
                     <div class="main__controls_button leaveMeeting" id="leave-meeting">
-                        <i class="fa fa-times"></i>
-                        <span class="">Leave Meeting</span>
+                        <span class=""><a id="leave-link-call" href="https://www.google.com.vn/?hl=vi">Leave Meeting</a></span>
                     </div>
                 </div>
 
@@ -83,6 +133,7 @@
             <div class="main__message_container">
                 <input type="text" id="chat_message" placeholder="Type message here.." />
             </div>
+
         </div>
     </div>
     <script src="script.js"></script>
