@@ -114,15 +114,30 @@ const addVideoStream = (videoEl, stream) => {
 };
 
 const shareScreen = () => {
-    const shareScreen = displayMediaOptions = {
-        video: { cursor: 'always' },
+    const shareScreen = displayMediaOptions = ({
+        video: { cursor: 'pointer' },
         audio: false
-    };
+    });
 
-    navigator.mediaDevices.getVideoTracks(displayMediaOptions)
-        .then(function(stream) {
-            // add this stream to your peer 
+    navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+
+    .then((stream) => {
+        myVideoStream = stream;
+        addVideoStream(myVideo, stream);
+        peer.on("call", (call) => {
+            call.answer(stream);
+            const video = document.createElement("video");
+
+            call.on("stream", (userVideoStream) => {
+                addVideoStream(video, userVideoStream);
+            });
         });
+
+        socket.on("user-connected", (userId) => {
+            connectToNewUser(userId, stream);
+        });
+
+    });
 };
 
 
