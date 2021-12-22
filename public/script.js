@@ -115,7 +115,7 @@ const addVideoStream = (videoEl, stream) => {
 
 const shareScreen = () => {
     const shareScreen = displayMediaOptions = ({
-        video: { cursor: 'pointer' },
+        video: { cursor: 'always' },
         audio: false
     });
 
@@ -124,6 +124,7 @@ const shareScreen = () => {
     .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
+
 
     });
 };
