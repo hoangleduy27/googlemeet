@@ -124,33 +124,9 @@ const shareScreen = () => {
     .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
-        peer.on("call", (call) => {
-            call.answer(stream);
-            const video = document.createElement("video");
-
-            call.on("stream", (userVideoStream) => {
-                addVideoStream(video, userVideoStream);
-            });
-        });
-
-
-
     });
 };
-peer.on("call", function(call) {
-    getUserMedia({ video: true, audio: true },
-        function(stream) {
-            call.answer(stream); // Answer the call with an A/V stream.
-            const video = document.createElement("video");
-            call.on("stream", function(remoteStream) {
-                addVideoStream(video, remoteStream);
-            });
-        },
-        function(err) {
-            console.log("Failed to get local stream", err);
-        }
-    );
-});
+
 
 
 const playStop = () => {
