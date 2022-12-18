@@ -9,7 +9,7 @@ myVideo.muted = true;
 
 const peer = new Peer(undefined, {
     path: "peerjs",
-    host: 'googlemeetupdate1.herokuapp.com',
+    host: 'googlemeet-ao7h.onrender.com',
     port: 443,
 });
 
