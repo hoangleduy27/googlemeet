@@ -1,4 +1,4 @@
-const socket = io('https://googlemeetupdate1.herokuapp.com/');
+const socket = io('https://googlemeet-ao7h.onrender.com');
 
 const chatInputBox = document.getElementById("chat_message");
 const all_messages = document.getElementById("all_messages");
