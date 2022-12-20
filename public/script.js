@@ -41,10 +41,7 @@ navigator.mediaDevices
         socket.on("user-connected", (userId) => {
             connectToNewUser(userId, stream);
         });
-        socket.on('user-disconnected', userId => {
-             if (peers[userId]) peers[userId].close()
-})
-
+        
         document.addEventListener("keydown", (e) => {
             if (e.which === 13 && chatInputBox.value != "") {
                 socket.emit("message", chatInputBox.value);
@@ -61,6 +58,10 @@ navigator.mediaDevices
         });
 
     });
+socket.on('user-disconnected', userId => {
+             if (peers[userId]) peers[userId].close()
+})
+
 
 peer.on("call", function(call) {
     getUserMedia({ video: true, audio: true },
