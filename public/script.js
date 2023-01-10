@@ -82,6 +82,8 @@ peer.on("call", function(call) {
 ///////
 
 peer.on("open", (id) => {
+    let app1 = document.querySelector('#my-peer');
+    app1.append(id);
     socket.emit("join-room", ROOM_ID, id);
     console.log(id);
 
