@@ -84,6 +84,7 @@ peer.on("call", function(call) {
 peer.on("open", (id) => {
     $('#mypeer').append(id);
     socket.emit("join-room", ROOM_ID, id);
+    console.log(id);
 
 
 });
