@@ -5,6 +5,9 @@ const all_messages = document.getElementById("all_messages");
 const main__chat__window = document.getElementById("main__chat__window");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
+const div_chat = document.querySelector('#div-chat');
+const div_dang_ky = document.querySelector('#div-dang-ky');
+const uluser = document.querySelector('#ulUser');
 myVideo.muted = true;
 
 ///username///
@@ -118,9 +121,14 @@ peer.on("open", (id) => {
     console.log('My peer ID is: ' + id);
     
     
-     document.getElementById("btnSignUp").click(() => {
-        const username = document.getElementById("#txtUsername").val();
-        socket.emit('NGUOI_DUNG_DANG_KY', { ten: username, peerID: id });
+ const btnsignup = document.querySelector('#btnSignUp');
+    btnsignup.addEventListener('click', () => {
+        const username = document.querySelector('#txtUsername').value;
+        socket.emit('NGUOI_DUNG_DANG_KY', { ten: username, peerId: id });
+        // let app = document.querySelector('#txtUsername');
+        // app.append(username);
+
+
         console.log(username);
     });
 
