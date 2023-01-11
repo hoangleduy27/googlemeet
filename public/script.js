@@ -7,6 +7,36 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 
+///username///
+
+// div_chat.hide();
+
+socket.on('DANH_SACH_ONLINE', arrUserInfo => {
+    div_chat.show();
+    div_dang_ky.hide();
+
+    arrUserInfo.forEach(user => {
+        const { ten, peerId } = user;
+        document.getElementById("ulUser").append(`<li id="${peerId}">${ten}</li>`);
+    });
+
+    socket.on('CO_NGUOI_DUNG_MOI', user => {
+        const { ten, peerId } = user;
+
+        document.getElementById("ulUser").append(`<li id="${peerId}">${ten}</li>`);
+    });
+
+    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
+        $(`#${peerId}`).remove();
+    });
+});
+
+socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
+
+
+
+//username//
+
 const peer = new Peer(undefined, {
     path: "peerjs",
     host: 'googlemeet-ao7h.onrender.com',
@@ -85,7 +115,14 @@ peer.on("open", (id) => {
     let app1 = document.querySelector('#my-peer');
     app1.append(id);
     socket.emit("join-room", ROOM_ID, id);
-    console.log(id);
+    console.log('My peer ID is: ' + id);
+    
+    
+     document.getElementById("btnSignUp").click(() => {
+        const username = document.getElementById("#txtUsername").val();
+        socket.emit('NGUOI_DUNG_DANG_KY', { ten: username, peerID: id });
+        console.log(username);
+    });
 
 
 });
