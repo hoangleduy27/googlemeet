@@ -42,6 +42,10 @@ io.on("connection", (socket) => {
             io.to(roomId).emit("createMessage", message);
         });
     });
+    
+});
+
+io.on("connection",socket=>{
     socket.on('NGUOI_DUNG_DANG_KY', user => {
         const isExist = arrUserInfo.some(e => e.ten === user.ten);
         socket.peerId = user.peerId;
