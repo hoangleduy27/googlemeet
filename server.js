@@ -34,28 +34,19 @@ io.on("connection", (socket) => {
 });
 const arrUserInfo = [];
 io.on('connection', (socket) => {
-    socket.on('NGUOI_DUNG_DANG_KY', user => {
-        const isExist = arrUserInfo.some(e => e.ten === user.ten);
-        socket.peerId = user.peerId;
+      socket.on('nguoi_dung_dang_ky', username => {
+        const isExist = arrUserInfo.some(e => e.username === user.username);
+        socket.id = user.id;
         if (isExist) return socket.emit('DANG_KY_THAT_BAT');
         arrUserInfo.push(user);
         socket.emit('DANH_SACH_ONLINE', arrUserInfo);
         socket.broadcast.emit('CO_NGUOI_DUNG_MOI', user);
-        console.log(user);
-    });
-    socket.on('NGUOI_DUNG_DANG_KY', user => {
-        const isExist = arrUserInfo.some(e => e.ten === user.ten);
-        socket.peerId = user.peerId;
-        if (isExist) return socket.emit('DANG_KY_THAT_BAT');
-        arrUserInfo.push(user);
-        socket.emit('DANH_SACH_ONLINE', arrUserInfo);
-        socket.broadcast.emit('CO_NGUOI_DUNG_MOI', user);
+        console.log(username)
     });
     socket.on('disconnect', () => {
-        const index = arrUserInfo.findIndex(user => user.peerId === socket.peerId);
+        const index = arrUserInfo.findIndex(user => user.id === socket.id);
         arrUserInfo.splice(index, 1);
-        io.emit('AI_DO_NGAT_KET_NOI', socket.peerId);
+        io.emit('AI_DO_NGAT_KET_NOI', socket.id);
     });
-
 });
 server.listen(process.env.PORT || 3030);
