@@ -15,26 +15,21 @@ myVideo.muted = true;
 // div_chat.hide();
 
 socket.on('DANH_SACH_ONLINE', arrUserInfo => {
-    div_chat.show();
-    div_dang_ky.hide();
+    console.log(arrUserInfo);
 
     arrUserInfo.forEach(user => {
-        const { ten, peerId } = user;
-        document.getElementById("ulUser").append(`<li id="${peerId}">${ten}</li>`);
+        const { username, id } = user;
+        uluser.append(`<li id="${id}">${username}</li>`);
     });
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
-        const { ten, peerId } = user;
-
-        document.getElementById("ulUser").append(`<li id="${peerId}">${ten}</li>`);
+        const { username, id } = user;
+        uluser.append(`<li id="${id}">${username}</li>`);
     });
-
-    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
-        $(`#${peerId}`).remove();
+    socket.on('AI_DO_NGAT_KET_NOI', id => {
+        $(`#${id}`).remove();
     });
 });
-
-socket.on('DANG_KY_THAT_BAT', () => alert('Vui long chon username khac!'));
 
 
 
