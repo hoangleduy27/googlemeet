@@ -42,11 +42,7 @@ io.on("connection", (socket) => {
             io.to(roomId).emit("createMessage", message);
         });
     });
-    
-});
-
-io.on("connection",socket=>{
-    socket.on('NGUOI_DUNG_DANG_KY', user => {
+     socket.on('NGUOI_DUNG_DANG_KY', user => {
         const isExist = arrUserInfo.some(e => e.ten === user.ten);
         socket.peerId = user.peerId;
         if (isExist) return socket.emit('DANG_KY_THAT_BAT');
@@ -60,5 +56,8 @@ io.on("connection",socket=>{
         arrUserInfo.splice(index, 1);
         io.emit('AI_DO_NGAT_KET_NOI', socket.peerId);
     });
+    
 });
+
+
 server.listen(process.env.PORT || 3030);
