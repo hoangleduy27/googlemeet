@@ -33,8 +33,8 @@ io.on("connection", (socket) => {
     });
 });
 const arrUserInfo = [];
-io.on('connection', (socket) => {
-      socket.on('nguoi_dung_dang_ky', username => {
+io.on('connection', socket => {
+      socket.on('nguoi_dung_dang_ky', user => {
         const isExist = arrUserInfo.some(e => e.username === user.username);
         socket.id = user.id;
         if (isExist) return socket.emit('DANG_KY_THAT_BAT');
