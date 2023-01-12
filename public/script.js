@@ -119,7 +119,7 @@ peer.on("open", (id) => {
  const btnsignup = document.querySelector('#btnSignUp');
     btnsignup.addEventListener('click', () => {
         const username = document.querySelector('#txtUsername').value;
-        socket.emit('NGUOI_DUNG_DANG_KY', { ten: username, peerId: id });
+        socket.emit('nguoi_dung_dang_ky', { ten: username, peerId: id });
         // let app = document.querySelector('#txtUsername');
         // app.append(username);
 
