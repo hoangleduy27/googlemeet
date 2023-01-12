@@ -20,7 +20,7 @@ socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 
     arrUserInfo.forEach(user => {
         const { ten, peerId } = user;
-        uluser.append(${ten});
+        uluser.append({ten});
     });
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
