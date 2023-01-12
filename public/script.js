@@ -122,10 +122,10 @@ peer.on("open", (id) => {
         socket.emit('nguoi_dung_dang_ky', { username, id });
         // let app = document.querySelector('#txtUsername');
         // app.append(username);
-        uluser.append(username);
+//         uluser.append(username);
 
 
-        console.log(username);
+//         console.log(username);
     });
 
 
