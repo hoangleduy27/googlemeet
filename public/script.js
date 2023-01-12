@@ -15,19 +15,21 @@ myVideo.muted = true;
 // div_chat.hide();
 
 socket.on('DANH_SACH_ONLINE', arrUserInfo => {
-    console.log(arrUserInfo);
+    div_chat.show();
+    div_dang_ky.hide();
 
     arrUserInfo.forEach(user => {
-        const { username, id } = user;
-        uluser.append(`<li id="${id}">${username}</li>`);
+        const { ten, peerId } = user;
+        uluser.append(${ten});
     });
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
-        const { username, id } = user;
-        uluser.append(`<li id="${id}">${username}</li>`);
+        const { ten, peerId } = user;
+        uluser.append(${ten});
     });
-    socket.on('AI_DO_NGAT_KET_NOI', id => {
-        $(`#${id}`).remove();
+
+    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
+        $(`#${peerId}`).remove();
     });
 });
 
@@ -116,12 +118,10 @@ peer.on("open", (id) => {
     console.log('My peer ID is: ' + id);
     
     
- const btnsignup = document.querySelector('#btnSignUp');
+    const btnsignup = document.querySelector('#btnSignUp');
     btnsignup.addEventListener('click', () => {
         const username = document.querySelector('#txtUsername').value;
-        socket.emit('nguoi_dung_dang_ky', { username, id });
-        // let app = document.querySelector('#txtUsername');
-        // app.append(username);
+        socket.emit('NGUOI_DUNG_DANG_KY', { ten: username, peerId: id });
 //         uluser.append(username);
 
 
