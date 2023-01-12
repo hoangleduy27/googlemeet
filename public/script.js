@@ -19,12 +19,12 @@ socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 
     arrUserInfo.forEach(user => {
         const { ten, peerId } = user;
-        uluser.append('<li></li>', ten);
+        uluser.append( ten);
     });
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
         const { ten, peerId } = user;
-        uluser.append('<li></li>', ten);
+        uluser.append( ten);
     });
 
     socket.on('AI_DO_NGAT_KET_NOI', peerId => {
