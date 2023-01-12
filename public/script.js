@@ -18,18 +18,18 @@ socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 
 
     arrUserInfo.forEach(user => {
-        const { ten } = user;
+        const { ten , peerId } = user;
         uluser.append("\n" , ten);
     });
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
-        const { ten } = user;
+        const { ten , peerId } = user;
         uluser.append("\n" , ten);
     });
 
-//     socket.on('AI_DO_NGAT_KET_NOI', peerId => {
-//         $(`#${peerId}`).remove();
-//     });
+    socket.on('AI_DO_NGAT_KET_NOI', peerId => {
+        $(`#${peerId}`).remove();
+    });
 });
 
 
@@ -82,7 +82,7 @@ navigator.mediaDevices
             console.log(msg);
             let li = document.createElement("li");
             li.innerHTML = msg;
-            all_messages.append({ten , li});
+            all_messages.append(li);
             main__chat__window.scrollTop = main__chat__window.scrollHeight;
         });
 
