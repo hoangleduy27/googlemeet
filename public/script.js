@@ -15,8 +15,7 @@ myVideo.muted = true;
 // div_chat.hide();
 
 socket.on('DANH_SACH_ONLINE', arrUserInfo => {
-    div_chat.show();
-    div_dang_ky.hide();
+
 
     arrUserInfo.forEach(user => {
         const { ten, peerId } = user;
@@ -25,7 +24,7 @@ socket.on('DANH_SACH_ONLINE', arrUserInfo => {
 
     socket.on('CO_NGUOI_DUNG_MOI', user => {
         const { ten, peerId } = user;
-        uluser.append(${ten});
+        uluser.append({ten});
     });
 
     socket.on('AI_DO_NGAT_KET_NOI', peerId => {
